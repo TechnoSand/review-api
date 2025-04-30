@@ -1,11 +1,17 @@
 import express from 'express';
 import routes from './routes.js';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+dotenv.config();
 
 
 class App {
   constructor() {
     this.server = express();
-    
+
+    mongoose.connect(process.env.MONGO_URI);
+
     this.middlewares();
     this.routes();
   }
