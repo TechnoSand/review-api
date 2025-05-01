@@ -1,10 +1,12 @@
 import { Router } from 'express';
+import reviewController from './controllers/ReviewController.js';
 
 
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'testing route' });
-});           
+routes.get('/', reviewController.getAll);           
+routes.get('/:treinamentoId', reviewController.showByTreinamento);     
+routes.post('/', reviewController.store);   
+routes.delete('/:treinamentoId', reviewController.destroyTreinamento);  
 
 export default routes;
